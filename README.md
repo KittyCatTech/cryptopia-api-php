@@ -9,13 +9,13 @@ Cryptopia API Wrapper in PHP
 * getPrices() - Returns array with high, low, bid, ask, & last price for each currency pair
 * updatePrices() - Reload the array of prices from the exchange
 * getBalance() - Returns array of account balance for each crypto currency 
-* getCurrencyBalance($currency) - Returns the balance for specified cryptocurrency
+* getCurrencyBalance($currency) - Returns the balance for specified crypto currency
 * activeOrders() - Retuens array of all of your open buy and sell orders
 * cancelOrder($id) - Cancels a specific order given the order id
 * cancelAll() - Cancels all of your orders
-* buy($symbol, $amount, $price);  - Places a buy order
-* sell($symbol, $amount, $price); - Places a sell order
-* marketOrderbook($symbol) - Return an array of all buy/sell orders on the exchanges orderbook for a given currency pair (specified in only capital letter)
+* buy($symbol, $amount, $price);  - Places a buy order (currency pair symbol specified in only capital letter)
+* sell($symbol, $amount, $price); - Places a sell order (currency pair symbol specified in only capital letter)
+* marketOrderbook($symbol) - Returns an array of all buy/sell orders on the exchanges orderbook for a given currency pair (specified in only capital letter)
 * highestBid($orders, $depth default:0, $type default:"Buy"))  - Recieves an ordered array of orders and return the highest buy price at a specified depth
 * LowestAsk($offers, $depth default:0, $type default:"Sell") - Recieves an ordered array of orders and return the lowest sell price at a specified depth
 
