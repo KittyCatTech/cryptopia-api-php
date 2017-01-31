@@ -4,7 +4,7 @@ Cryptopia API Wrapper in PHP
 ## Functions:
 
 * getSymbols() - Returns and array of currency pairs and currency pair ids
-* makeStandardSymbol($exchangeSymbolLabel) - Converts currency pairs into only uppercase letters (LTC/BTC or ltc_btc to BTCUSD)
+* makeStandardSymbol($exchangeSymbolLabel) - Converts currency pairs into only uppercase letters (LTC/BTC or ltc_btc to LTCBTC)
 * getExchangeSymbol($standardSymbol) - Recieves the currency pair in only capital letters  and returns the exchanges currency pair id
 * getPrices() - Returns array with high, low, bid, ask, & last price for each currency pair
 * updatePrices() - Reload the array of prices from the exchange
