@@ -29,7 +29,7 @@ $API_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
 $API_SECRET = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
 try {
    $ct = New Cryptopia($API_SECRET, $API_KEY);
-   $my_btc = $ct->GetCurrencyBalance( "BTC" );
+   $my_btc = $ct->getCurrencyBalance( "BTC" );
    echo "BTC Balance: " . $my_btc . PHP_EOL;
 } catch(Exception $e) {
    echo '' . $e->getMessage() . PHP_EOL;
