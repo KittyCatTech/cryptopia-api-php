@@ -45,3 +45,12 @@ try {
 ## License:
 
 [BipCot NoGov Software License](https://github.com/KittyCatTech/cryptopia-api-php/blob/master/LICENSE)
+
+
+## Development:
+
+Donations accepted in Monero and BipCoin:
+
+XMR: 49kC7NB3iagZf2T4AhBdL84N9JaugEhvJVJDBEuMEKQSUnrx3xFoDzejpRKiSgX7V1j1im8h8xyRmNXJJSQtBtJS7F25nzs
+
+BIP: bip1WevdQxcaVYr1bRuqEsEqU4vEJ5qFtHsrWANG7hbTYyvTmvTswC8FcX6yAZ2MunWE3Fu1qLpTBVU nf7hDhWpi4BbozDmQJ1
