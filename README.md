@@ -40,6 +40,8 @@ try {
 
 [sample.php](https://github.com/KittyCatTech/cryptopia-api-php/blob/master/sample.php) - Sample code to call each function in the API wrapper.
 
+[samplebuybot.php](https://github.com/KittyCatTech/cryptopia-api-php/blob/master/samplebuybot.php) - Sample Buy Bot.
+
 ## License:
 
 [BipCot NoGov Software License](https://github.com/KittyCatTech/cryptopia-api-php/blob/master/LICENSE)
