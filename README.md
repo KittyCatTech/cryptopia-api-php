@@ -49,7 +49,7 @@ try {
 
 ## Development:
 
-Donations accepted in Monero and BipCoin:
+Donations are accepted in Monero and BipCoin:
 
 XMR: 49kC7NB3iagZf2T4AhBdL84N9JaugEhvJVJDBEuMEKQSUnrx3xFoDzejpRKiSgX7V1j1im8h8xyRmNXJJSQtBtJS7F25nzs
 
