@@ -218,6 +218,21 @@ class Cryptopia extends Exchange{
       }
       return $orders;
    }   
+   
+   /**
+    * https://www.cryptopia.co.nz/Forum/Thread/255#GetMarketHistory
+    */
+   public function marketHistory($symbol)
+   {
+      $mktOrders = json_decode($this->apiCall("GetMarketHistory", array('TradePairId'=>$this->getExchangeSymbol($symbol))), true);
+      unset($orders);
+      if( $mktOrders['Success'] == "true" && $mktOrders['Error'] == "") {
+         return $mktOrders['Data'];
+      } else {
+         throw new Exception("Can't get market histories Error: " . $mktOrders['Error'] );
+      }
+      return $orders;
+   }   
 
 }
 
