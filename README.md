@@ -16,6 +16,7 @@ Cryptopia API Wrapper in PHP
 * buy($symbol, $amount, $price);  - Places a buy order (currency pair symbol specified in only capital letter)
 * sell($symbol, $amount, $price); - Places a sell order (currency pair symbol specified in only capital letter)
 * marketOrderbook($symbol) - Returns an array of all buy/sell orders on the exchanges orderbook for a given currency pair (specified in only capital letter)
+* marketHistory($symbol) - Returns an array of all marketHistory for a given currency pair
 * highestBid($orders, $depth default:0, $type default:"Buy"))  - Recieves an ordered array of orders and return the highest buy price at a specified depth
 * LowestAsk($offers, $depth default:0, $type default:"Sell") - Recieves an ordered array of orders and return the lowest sell price at a specified depth
 

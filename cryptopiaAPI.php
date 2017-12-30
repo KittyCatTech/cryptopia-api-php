@@ -6,20 +6,6 @@ class Cryptopia extends Exchange{
    public function __construct($priv, $pub) {
       $this->privateKey = $priv;
       $this->publicKey = $pub;
-
-      $result = json_decode($this->apiCall("GetBalance", array( 'Currency'=> 'BTC' )), true); // There is a bug in the API if you send no parameters it will return Success:true Error: Market not found.
-         // Array
-         // (
-         //    [Success] => 1
-         //    [Message] =>
-         //    [Data] =>
-         //    [Error] => Market not found.
-         // )
-      // print_r($result);
-      if( $result['Success'] != "true" ) {
-         throw new Exception("Can't Connect to Cryptopia, Error: " . $result['Error'] );
-         return false;
-      }
       return true;
    }
 
@@ -28,11 +14,21 @@ class Cryptopia extends Exchange{
       $private_set = array( "GetBalance", "GetDepositAddress", "GetOpenOrders", "GetTradeHistory", "GetTransactions", "SubmitTrade", "CancelTrade", "SubmitTip" );
       static $ch = null;
       $ch = curl_init();
+      curl_setopt($ch, CURLOPT_HEADER, false);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      //curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; Cryptopia.co.nz API PHP client; FreeBSD; PHP/'.phpversion().')');
+      curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; Cryptopia.co.nz API PHP client; Linux;');
       if ( in_array( $method ,$public_set ) ) {
          $url = "https://www.cryptopia.co.nz/api/" . $method;
-         if ($req) { foreach ($req as $r ) { $url = $url . '/' . $r; } }
+         /**
+          * Speedup
+          *  sample : $req = array('test', 'test2', 'test3');
+          *  foreach : 10000 cycle
+          *  if ($req) { foreach ($req as $r ) { $url = $url . '/' . $r; } }
+          *   -> float(0.1573920249939)
+          *  if ($req) $url .= '/' . implode('/', (array)$req);
+          *   -> float(0.0012869834899902)
+          */
+         if ($req) $url .= '/' . implode('/', (array)$req);
          curl_setopt($ch, CURLOPT_URL, $url );
       } elseif ( in_array( $method, $private_set ) ) {
          $url = "https://www.cryptopia.co.nz/Api/" . $method;
@@ -48,9 +44,8 @@ class Cryptopia extends Exchange{
          curl_setopt($ch, CURLOPT_URL, $url );
          curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $req ) );
       }
-          // run the query
       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-      curl_setopt($ch, CURLOPT_FRESH_CONNECT, TRUE); // Do Not Cache
+      curl_setopt($ch, CURLOPT_FRESH_CONNECT, TRUE);
       $res = curl_exec($ch);
       if ($res === false) throw new Exception('Could not get reply: '.curl_error($ch));
       return $res;
@@ -215,6 +210,21 @@ class Cryptopia extends Exchange{
          }
       } else {
          throw new Exception("Can't get orderbook, Error: " . $mktOrders['Error'] );
+      }
+      return $orders;
+   }   
+   
+   /**
+    * https://www.cryptopia.co.nz/Forum/Thread/255#GetMarketHistory
+    */
+   public function marketHistory($symbol)
+   {
+      $mktOrders = json_decode($this->apiCall("GetMarketHistory", array('TradePairId'=>$this->getExchangeSymbol($symbol))), true);
+      unset($orders);
+      if( $mktOrders['Success'] == "true" && $mktOrders['Error'] == "") {
+         return $mktOrders['Data'];
+      } else {
+         throw new Exception("Can't get market histories Error: " . $mktOrders['Error'] );
       }
       return $orders;
    }   
